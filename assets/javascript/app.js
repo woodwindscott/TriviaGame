@@ -22,13 +22,94 @@ var optionAnswers = [
         gif: '<iframe src="https://giphy.com/embed/l41lVBYlQEYQaUQV2" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>'
     },
     {
-        question: "Question 2",
-        answers: ["Option-1", 
-                  "Option-2", 
-                  "Option-3", 
-                  "Option-4"],
-        gif: ''
-    }
+        question: "Who was the only US President to serve more than two terms?",
+        answers: ["Franklin D. Roosevelt", 
+                  "Ulysses S. Grant", 
+                  "George Washington", 
+                  "Theodore Roosevelt"],
+        gif: '<iframe src="https://giphy.com/embed/R7TtRjIjgk1XO" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>'
+    },
+    {
+        question: "Who was the only US President to serve two non-consecutive terms?",
+        answers: ["Grover Cleveland", 
+                  "Theodore Roosevelt", 
+                  "Ronald Reagan", 
+                  "Woodrow Wilson"],
+        gif: '<iframe src="https://giphy.com/embed/i1bT6oIXsoC3e" width="480" height="320" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>'
+    },
+    {
+        question: "Who was the oldest elected US President?",
+        answers: ["Donald Trump", 
+                  "Dwight D. Eisenhower", 
+                  "Ronald Reagan", 
+                  "James Buchanan"],
+        gif: '<iframe src="https://giphy.com/embed/1TSUKOv4k56aIryKAP" width="436" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>'
+    },
+    {
+        question: "Who was the first President to live in the White House?",
+        answers: ["John Adams", 
+                  "Thomas Jefferson", 
+                  "George Washington", 
+                  "Andrew Jackson"],
+        gif: '<iframe src="https://giphy.com/embed/N6lrS4304Agog" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>'
+    },
+    {
+        question: "Who was the first President born outside the contiguous United States?",
+        answers: ["Barack Obama", 
+                  "Franklin Pierce", 
+                  "Benjamin Harrison", 
+                  "William Howard Taft"],
+        gif: '<iframe src="https://giphy.com/embed/3o7qDSOvfaCO9b3MlO" width="480" height="342" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>'
+    },
+    {
+        question: "Which U.S. President signed the treaty to purchase Alaska from Russia?",
+        answers: ["Andrew Johnson", 
+                  "James Buchanan", 
+                  "Ulysses S. Grant", 
+                  "Andrew Jackson"],
+        gif: '<iframe src="https://giphy.com/embed/l0HlErEtiFGdLAD0Q" width="480" height="267" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>'
+    },
+    {
+        question: "Who was the first President to appear on TV?",
+        answers: ["Franklin D. Roosevelt", 
+                  "Harry S. Truman", 
+                  "Dwight D. Eisenhower", 
+                  "John F. Kennedy"],
+        gif: '<iframe src="https://giphy.com/embed/2swQ2cPvmI7Fm" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>'
+    },
+    {
+        question: "Who was the first President to appoint an African American to the Supreme Court?",
+        answers: ["Lyndon Johnson", 
+                  "George H.W. Bush", 
+                  "John F. Kennedy", 
+                  "Bill Clinton"],
+        gif: '<iframe src="https://giphy.com/embed/JRgtgsZQSNYA5wEA6d" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>'
+    },
+    {
+        question: 'Walt Whitman&rsquo;s poem "Oh Captain, My Captain" was written about which President?',
+        answers: ["Abraham Lincoln", 
+                  "Theodore Roosevelt", 
+                  "George Washington", 
+                  "Ulysses S. Grant"],
+        gif: '<iframe src="https://giphy.com/embed/ef0zYcF7AKu4b0Sns6" width="480" height="204" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>'
+    },
+    {
+        question: "Who awarded Rosa Parks the Presidential Medal of Freedom?",
+        answers: ["Bill Clinton", 
+                  "Jimmy Carter", 
+                  "Lyndon Johnson", 
+                  "Barack Obama"],
+        gif: '<iframe src="https://giphy.com/embed/jWvLVbhcqkWfS" width="480" height="320" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>'
+    },
+    {
+        question: "Who is the only President to resign from office?",
+        answers: ["Richard Nixon", 
+                  "Bill Clinton", 
+                  "Andrew Johnson", 
+                  "Franklin Pierce"],
+        gif: '<iframe src="https://giphy.com/embed/GOsq7QnYlahag" width="480" height="357" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>'
+    },
+
 ];
 
 // Array connecting the correct answer to the "true" index
@@ -104,7 +185,7 @@ function decrement() {
 
         //  Alert the user that time is up.
         // increment to display the next question and set of answers
-        i++;
+        //TESTING - i++;
         alert("Time Up!");
         round();
     }
@@ -112,6 +193,8 @@ function decrement() {
 
 // This is what happens in each round...main portion of the game
 function round() {
+
+    console.log(i);
 
     // Displays the answers to the question
     $(".button-answers").show();
@@ -154,20 +237,21 @@ function round() {
 
     // Checking for clicks on answer buttons
     $(document).on("click", ".answer-guess", function() {
-        // Increment up for next round
-        i++;
         
+        console.log("ON CLICK: " + i);
         // If correct...
         if ($(this).attr("correct-answer") === "true" && timer > 0) {
             correct++;
+            console.log("CORRECT SCREEN + i = " + i);
             verify = "<h2>Correct!</h2>"
-            setTimeout(displayAnswer, 5000);
+            displayAnswer();
 
         // If incorrect...
         } if ($(this).attr("correct-answer") === "false" && timer > 0){
             incorrect++;
+            console.log("INCORRECT SCREEN + i = " + i);
             verify = "<h2>Nope!</h2><p>The correct answer was: " + correctAnswer + "</p>"
-            setTimeout(displayAnswer, 5000);
+            displayAnswer();
         }       
     });
 // End of round function        
@@ -175,17 +259,23 @@ function round() {
 
 // Function that controls 5 second answer screen
 function displayAnswer() {
-    
+
     // Stops the timer from counting down anymore
     stopTimer();
 
     // Hides the answer options and displays whether you guessed right or not plus gif
     $(".button-answers").hide();
     $("#question").html(verify);
-    $("#question").append(optionAnswers[i-1].gif);
-    
+    $("#question").append(optionAnswers[i].gif);
+
     // Runs answerScreen function for 5 seconds
     // answerScreen();
+    setTimeout(incrementRound, 5000);
+}
+
+function incrementRound() {
+    // Increment up for next round
+    i++;
     round();
 }
 
