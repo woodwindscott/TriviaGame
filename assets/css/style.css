@@ -1,0 +1,34 @@
+body {
+    background-image: url("../images/trivia-background.jpg");
+  }
+
+h1 {
+font-family: 'Lacquer', sans-serif;
+}
+
+.answers {
+    text-align: center;
+}
+
+.input:radio {
+    text-align: center;
+}
+
+.button.submit {
+    text-align: center;
+}
+
+button.link { 
+    background:none;
+    border:none; 
+    text-align: center;
+}
+
+button.link:hover { 
+    background:#5bc0de;
+    border:2px solid #d9534f; 
+}
+
+.button-answers {
+    text-align:center;
+}
