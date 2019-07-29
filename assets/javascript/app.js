@@ -7,6 +7,7 @@ var correctAnswer;
 var verify;
 var run = "true";
 var i = 0;
+var testCounter = 0;
 var correct = 0;
 var incorrect = 0;
 var missed = 0;
@@ -128,6 +129,12 @@ var destination = ["#answer-1",
 function shuffle(myArray, myArray2) {
     var counter = myArray.length;
 
+    // TESTING TO INCREMENT i counter
+    // i++;
+    testCounter++;
+    console.log("SHUFFLING: " + i);
+    console.log("SHUFFLING: TEST COUNTER: " + testCounter);
+
     //  While there are elements in the array
         while (counter > 0) {
     // Pick a random index
@@ -151,13 +158,9 @@ function shuffle(myArray, myArray2) {
 function countdown() {
     clearInterval(intervalID);
     intervalID = setInterval(decrement, 1000);
+    i++;
+    console.log("COUNTDOWN: Value of i: " + i);
 }
-
-// 5 second function to display correct answer and gif
-// function answerScreen() {
-//     clearInterval(answerIntervalID)
-//     answerIntervalID = setInterval(round, 5000);
-//}
 
 // Function which handles the end of the 30 second timer
 function stop() {
@@ -184,8 +187,6 @@ function decrement() {
     //   stop();
 
         //  Alert the user that time is up.
-        // increment to display the next question and set of answers
-        //TESTING - i++;
         alert("Time Up!");
         round();
     }
@@ -266,16 +267,17 @@ function displayAnswer() {
     // Hides the answer options and displays whether you guessed right or not plus gif
     $(".button-answers").hide();
     $("#question").html(verify);
-    $("#question").append(optionAnswers[i].gif);
+    // $("#question").append(optionAnswers[i].gif);
 
     // Runs answerScreen function for 5 seconds
     // answerScreen();
-    setTimeout(incrementRound, 5000);
+    setTimeout(round, 5000);
 }
 
 function incrementRound() {
     // Increment up for next round
-    i++;
+    // i++;
+    // console.log("INCREMENT ROUND: " + i);
     round();
 }
 
