@@ -129,12 +129,6 @@ var destination = ["#answer-1",
 function shuffle(myArray, myArray2) {
     var counter = myArray.length;
 
-    // TESTING TO INCREMENT i counter
-    // i++;
-    testCounter++;
-    console.log("SHUFFLING: " + i);
-    console.log("SHUFFLING: TEST COUNTER: " + testCounter);
-
     //  While there are elements in the array
         while (counter > 0) {
     // Pick a random index
@@ -158,13 +152,15 @@ function shuffle(myArray, myArray2) {
 function countdown() {
     clearInterval(intervalID);
     intervalID = setInterval(decrement, 1000);
-    i++;
     console.log("COUNTDOWN: Value of i: " + i);
 }
 
 // Function which handles the end of the 30 second timer
 function stop() {
     clearInterval(intervalID);
+    verify = "<h2>Time's up!</h2><p>The correct answer was: " + correctAnswer + "</p>";
+    missed++;
+    displayAnswer();
 }
 
 // Stop timer only when question was answered with time remaining
@@ -183,12 +179,8 @@ function decrement() {
     //  Once number hits zero...
     if (timer === 0) {
 
-    //  ...run the stop function.
-    //   stop();
-
-        //  Alert the user that time is up.
-        alert("Time Up!");
-        round();
+        //  ...run the stop function.
+        stop();
     }
 }
 
@@ -196,6 +188,9 @@ function decrement() {
 function round() {
 
     console.log(i);
+
+    //  Show the number in the time tag.
+    $("#time").text("Time remaining: 30 Seconds");
 
     // Displays the answers to the question
     $(".button-answers").show();
@@ -237,7 +232,7 @@ function round() {
     }
 
     // Checking for clicks on answer buttons
-    $(document).on("click", ".answer-guess", function() {
+    $(".answer-guess").on("click", function() {
         
         console.log("ON CLICK: " + i);
         // If correct...
@@ -251,7 +246,7 @@ function round() {
         } if ($(this).attr("correct-answer") === "false" && timer > 0){
             incorrect++;
             console.log("INCORRECT SCREEN + i = " + i);
-            verify = "<h2>Nope!</h2><p>The correct answer was: " + correctAnswer + "</p>"
+            verify = "<h2>Nope!</h2><p>The correct answer was: " + correctAnswer + "</p>";
             displayAnswer();
         }       
     });
@@ -261,8 +256,8 @@ function round() {
 // Function that controls 5 second answer screen
 function displayAnswer() {
 
-    // Stops the timer from counting down anymore
-    stopTimer();
+    // Increment i to access the next index (question) in the array
+    i++;
 
     // Hides the answer options and displays whether you guessed right or not plus gif
     $(".button-answers").hide();
@@ -270,16 +265,10 @@ function displayAnswer() {
     // $("#question").append(optionAnswers[i].gif);
 
     // Runs answerScreen function for 5 seconds
-    // answerScreen();
     setTimeout(round, 5000);
 }
 
-function incrementRound() {
-    // Increment up for next round
-    // i++;
-    // console.log("INCREMENT ROUND: " + i);
-    round();
-}
+
 
 //-------------------------------------------------//
 //------- MAIN RUN OF GAME ------------------------//
