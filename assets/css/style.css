@@ -32,3 +32,9 @@ button.link:hover {
 .button-answers {
     text-align:center;
 }
+
+.action-button {
+    padding: 40px 100px 40px 100px;
+    margin: 40px;
+    font-size: 40px;
+}
